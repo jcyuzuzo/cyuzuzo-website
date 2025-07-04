@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyuzuzo Joseph - Software Developer Portfolio & Blog</title>
+    <style>
+        /* --- Internal CSS for the Entire Page --- */
+        :root {
+            --primary-color: #3498db; /* A nice blue */
+            --secondary-color: #2c3e50; /* Darker blue/grey */
+            --text-color: #333;
+            --light-grey: #f4f4f4;
+            --border-color: #ddd;
+            --section-bg-light: #fdfdfd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: var(--light-grey);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--secondary-color);
+            color: #fff;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            min-height: 70px;
+            border-bottom: var(--primary-color) 3px solid;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            letter-spacing: 1px;
+        }
+
+        header nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        header li {
+            display: inline;
+            padding: 0 15px;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        header a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            color: #fff;
+            background: var(--primary-color);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .button-small {
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+
+        /* Sections Styling */
+        section {
+            padding: 60px 0;
+            background: var(--section-bg-light);
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        section:first-of-type { /* Hero section might need slightly different top margin */
+            margin-top: 0;
+            border-radius: 0; /* Hero might span full width */
+            box-shadow: none; /* Hero usually doesn't have box shadow */
+        }
+        section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+            font-size: 2.5em;
+        }
+
+        /* Hero Section */
+        #hero {
+            padding: 80px 0;
+            background: linear-gradient(to right, #ffffff, #f0f8ff);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        #hero .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: block; /* Ensures centering */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #hero h2 {
+            margin-bottom: 15px;
+            font-size: 2.5em;
+            color: var(--secondary-color);
+        }
+
+        #hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Project Grid */
+        .project-grid, .blog-post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .project-item, .blog-post-item {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-item:hover, .blog-post-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-item h3, .blog-post-item h3 {
+            color: var(--primary-color);
+            margin: 0 15px 10px 15px;
+            font-size: 1.5em;
+        }
+        .blog-post-item h3 a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        .blog-post-item h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .project-item p, .blog-post-item p {
+            padding: 0 20px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .blog-post-item .post-meta {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* About Section */
+        #about-me {
+            text-align: center;
+        }
+
+        #about-me .profile-pic-large {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        #about-me p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto 20px auto;
+            color: #444;
+            text-align: left;
+        }
+
+        #about-me h3 {
+            color: var(--primary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        #about-me ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto 30px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        #about-me li {
+            background: var(--light-grey);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 15px;
+            font-size: 1em;
+            color: var(--secondary-color);
+            font-weight: bold;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: background 0.3s ease;
+        }
+
+        #about-me li:hover {
+            background: var(--border-color);
+        }
+
+        /* Contact Section */
+        #contact-me {
+            text-align: center;
+        }
+
+        #contact-me .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #contact-me .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 1.05em;
+        }
+
+        #contact-me .form-group input[type="text"],
+        #contact-me .form-group input[type="email"],
+        #contact-me .form-group textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #contact-me .form-group input[type="text"]:focus,
+        #contact-me .form-group input[type="email"]:focus,
+        #contact-me .form-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        #contact-me .form-group textarea {
+            resize: vertical;
+        }
+
+        #contact-me .contact-info {
+            margin-top: 40px;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        #contact-me .social-links {
+            margin-top: 20px;
+        }
+
+        #contact-me .social-links a {
+            color: var(--primary-color);
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.5em; /* Larger icons */
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        #contact-me .social-links a:hover {
+            color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        /* Style for text within social links to align with image */
+        #contact-me .social-links a img {
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            background: var(--secondary-color);
+            color: #fff;
+            border-top: var(--primary-color) 3px solid;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+        }
+
+        footer .social-links a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        footer .social-links a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                width: 90%;
+            }
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            header nav {
+                margin-top: 15px;
+            }
+            header li {
+                padding: 0 10px;
+            }
+            section {
+                padding: 40px 0;
+            }
+            section h2 {
+                font-size: 2em;
+            }
+            #hero h2 {
+                font-size: 2em;
+            }
+            #hero p {
+                font-size: 1em;
+            }
+            .project-grid, .blog-post-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
+            #about-me p {
+                font-size: 1em;
+                text-align: justify;
+            }
+            #about-me h3 {
+                font-size: 1.8em;
+            }
+            #contact-me .form-group {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            header li {
+                display: block;
+                padding: 8px 0;
+            }
+            #hero {
+                padding: 50px 0;
+            }
+            #hero .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+            .button {
+                padding: 10px 20px;
+            }
+            .project-grid, .blog-post-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            #about-me .profile-pic-large {
+                width: 150px;
+                height: 150px;
+            }
+            #about-me li {
+                font-size: 0.9em;
+                padding: 6px 12px;
+                margin: 4px;
+            }
+            #contact-me .social-links a {
+                font-size: 1.2em;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Cyuzuzo Joseph</h1>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#portfolio-showcase">Portfolio</a></li>
+                    <li><a href="#blog-section">Blog</a></li>
+                    <li><a href="#about-me">About</a></li>
+                    <li><a href="#contact-me">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <img src="profile pic.PNG" class="profile-pic">
+                <h2>Hello, I'm Cyuzuzo Joseph.</h2>
+                <p>I'm a **Software Developer** passionate about **building innovative web solutions and leveraging data for impact**. Welcome to my digital space where I showcase my work and share my insights.</p>
+                <a href="#portfolio-showcase" class="button">View My Work</a>
+            </div>
+        </section>
+
+        <section id="portfolio-showcase" class="container">
+            <h2>My Recent Projects</h2>
+            <div class="project-grid">
+                <div class="project-item">
+                    <img src="PROJECT1.PNG" alt="Project 1 Thumbnail: E-commerce Platform">
+                    <h3>E-commerce Platform</h3>
+                    <p>Developed a full-stack e-commerce solution with user authentication, product catalog, and secure payment integration using **React, Node.js, and MongoDB**.</p>
+                    <a href="#project-details-1" class="button-small">Learn More</a>
+                </div>
+                <div class="project-item">
+                    <img src="PROJECT2.PNG" alt="Project 2 Thumbnail: Data Visualization Dashboard">
+                    <h3>DataViz Dashboard</h3>
+                    <p>Designed and implemented an interactive data visualization dashboard for **financial data** using **Vue.js and D3.js** to provide actionable insights.</p>
+                    <a href="#project-details-2" class="button-small">Learn More</a>
+                </div>
+                </div>
+        </section>
+
+        <section id="project-details-1" class="container" style="padding-top: 60px; padding-bottom: 60px; background: var(--section-bg-light); margin-top: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <h2 style="margin-bottom: 20px;">E-commerce Platform - Full Details</h2>
+            <p style="text-align: center; color: #777;">**Technologies Used:** React, Node.js, Express, MongoDB, Redux</p>
+            <p>This project involved building a comprehensive e-commerce website from the ground up, simulating a real-world online store experience. Key features included:</p>
+            <ul>
+                <li>**Secure User Authentication:** Implemented user registration, login, and session management with JWT tokens.</li>
+                <li>**Dynamic Product Catalog:** Users can browse products, view details, and filter by categories.</li>
+                <li>**Shopping Cart Functionality:** Add, update, and remove items from the cart.</li>
+                <li>**Simulated Checkout Process:** Handled order creation and status updates.</li>
+                <li>**Admin Panel:** Basic functionalities for managing products and users.</li>
+            </ul>
+            <img src="images/project1-detail.jpg" alt="E-commerce Platform detailed view" style="max-width: 100%; height: auto; display: block; margin: 30px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <p><strong>Challenges & Solutions:</strong> One significant challenge was ensuring real-time stock updates across multiple user sessions, which was addressed using **WebSockets for instant communication**. Another was optimizing database queries for large product inventories, tackled by implementing **indexing and aggregation pipelines** in MongoDB.</p>
+            <p><strong>Outcome:</strong> The platform successfully demonstrated a scalable architecture and a smooth user experience, capable of handling concurrent users and ready for future expansion with real payment gateway integrations and advanced analytics.</p>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://github.com/cyuzuzojoseph/ecommerce-repo" target="_blank" class="button-small">View Code (GitHub)</a>
+                <a href="#portfolio-showcase" class="button-small">Back to Projects</a>
+            </div>
+        </section>
+
+        <section id="project-details-2" class="container" style="padding-top: 60px; padding-bottom: 60px; background: var(--section-bg-light); margin-top: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <h2 style="margin-bottom: 20px;">DataViz Dashboard - Full Details</h2>
+            <p style="text-align: center; color: #777;">**Technologies Used:** Vue.js, D3.js, REST APIs, Python Flask (backend)</p>
+            <p>This project focused on creating an interactive dashboard to visualize complex financial datasets, making them easily understandable for non-technical users. Key features included:</p>
+            <ul>
+                <li>**Dynamic Charting:** Implemented various chart types (bar, line, pie) using D3.js, allowing users to interact with data.</li>
+                <li>**Filtering & Aggregation:** Users can filter data by date ranges, categories, and aggregate data points on the fly.</li>
+                <li>**Responsive Design:** Ensures the dashboard is fully functional and visually appealing on desktops, tablets, and mobile devices.</li>
+                <li>**Backend Integration:** Connected to a Python Flask API that served aggregated data from a PostgreSQL database.</li>
+            </ul>
+            <img src="images/project2-detail.jpg" alt="Data Visualization Dashboard detailed view" style="max-width: 100%; height: auto; display: block; margin: 30px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <p><strong>Challenges & Solutions:</strong> A major challenge was optimizing the rendering performance of D3.js charts with large datasets. This was mitigated by **data chunking and virtualized rendering**. Ensuring cross-browser compatibility for advanced SVG manipulations also required careful testing and fallback strategies.</p>
+            <p><strong>Outcome:</strong> The dashboard provided a powerful and intuitive tool for financial analysts to quickly identify trends and anomalies, significantly reducing the time spent on manual data analysis.</p>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://github.com/cyuzuzojoseph/dataviz-dashboard-repo" target="_blank" class="button-small">View Code (GitHub)</a>
+                <a href="#portfolio-showcase" class="button-small">Back to Projects</a>
+            </div>
+        </section>
+        <section id="blog-section" class="container">
+            <h2>My Blog Posts</h2>
+            <div class="blog-post-grid">
+                <article class="blog-post-item">
+                    <h3><a href="#blog-post-1">The Journey Begins: My First Web Development Project</a></h3>
+                    <p class="post-meta">July 1, 2025 | Web Development</p>
+                    <p>This post delves into the initial challenges and triumphs of building my very first web application and the lessons learned...</p>
+                    <a href="#blog-post-1" class="button-small">Continue Reading</a>
+                </article>
+
+                <article class="blog-post-item">
+                    <h3><a href="#blog-post-2">Understanding User Experience in Design</a></h3>
+                    <p class="post-meta">June 20, 2025 | UX Design</p>
+                    <p>Exploring the fundamental principles of UX and how they apply to creating intuitive digital products. A deep dive into user research and prototyping...</p>
+                    <a href="#blog-post-2" class="button-small">Continue Reading</a>
+                </article>
+
+                <article class="blog-post-item">
+                    <h3><a href="#blog-post-3">5 Essential Principles for Clean Code</a></h3>
+                    <p class="post-meta">May 15, 2025 | Software Engineering</p>
+                    <p>Discover the foundational principles that lead to more maintainable, readable, and scalable codebases. Learn to write code that others (and your future self) will thank you for.</p>
+                    <a href="#blog-post-3" class="button-small">Continue Reading</a>
+                </article>
+                </div>
+        </section>
+
+        <section id="blog-post-1" class="container" style="padding-top: 60px; padding-bottom: 60px; background: var(--section-bg-light); margin-top: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <article>
+                <h2>The Journey Begins: My First Web Development Project</h2>
+                <p class="post-meta">Published on: July 1, 2025 | Category: Web Development | Author: Cyuzuzo Joseph</p>
+
+                <img src="images/blog-post-image.jpg" alt="Developer working on a laptop, illustrating web development." style="max-width: 100%; height: auto; display: block; margin: 30px auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+
+                <p>Welcome to my first technical blog post! Every developer remembers their first significant project. For me, it was building a simple task manager application. This experience, while humble, laid the foundational blocks for my understanding of web development principles.</p>
+
+                <h3>The Idea and Initial Setup</h3>
+                <p>The goal was straightforward: create an app where users could add, delete, and mark tasks as complete. I decided to start with the absolute basics: HTML for structure, CSS for styling, and vanilla JavaScript for interactivity.</p>
+
+                <p>Here's a snippet of the initial HTML structure for a task item:</p>
+                <pre style="background: #eee; padding: 20px; border-radius: 8px; overflow-x: auto; margin-bottom: 1.5em; font-size: 0.95em; line-height: 1.5; border: 1px solid var(--border-color);"><code>
+&lt;!-- Basic Task Item HTML --&gt;
+&lt;div class="task-item"&gt;
+    &lt;span class="task-text"&gt;Learn HTML&lt;/span&gt;
+    &lt;button class="complete-btn"&gt;Complete&lt;/button&gt;
+    &lt;button class="delete-btn"&gt;Delete&lt;/button&gt;
+&lt;/div&gt;
+                </code></pre>
+
+                <h3>Facing Challenges and Learning</h3>
+                <p>One of the biggest hurdles was managing the state of tasks. How do I add new tasks without reloading the page? How do I update their status or remove them dynamically? This is where JavaScript truly shone. I learned about:</p>
+                <ul>
+                    <li>**DOM Manipulation:** Adding and removing elements on the fly.</li>
+                    <li>**Event Listeners:** Responding to user clicks on buttons.</li>
+                    <li>**Array Methods:** Managing the list of tasks in a JavaScript array.</li>
+                </ul>
+
+                <p>Here's a simplified JavaScript function for adding a new task:</p>
+                <pre style="background: #eee; padding: 20px; border-radius: 8px; overflow-x: auto; margin-bottom: 1.5em; font-size: 0.95em; line-height: 1.5; border: 1px solid var(--border-color);"><code>
+// Simplified JavaScript to add a task
+function addTask(taskText) {
+    const taskList = document.getElementById('taskList'); // Assuming you have a #taskList container
+    const newTask = document.createElement('div');
+    newTask.classList.add('task-item');
+    newTask.innerHTML = `
+        &lt;span class="task-text"&gt;${taskText}&lt;/span&gt;
+        &lt;button class="complete-btn"&gt;Complete&lt;/button&gt;
+        &lt;button class="delete-btn"&gt;Delete&lt;/button&gt;
+    `;
+    // taskList.appendChild(newTask); // Uncomment if you add #taskList to the DOM
+
+    // Add event listeners for the new buttons
+    // newTask.querySelector('.complete-btn').addEventListener('click', () => {
+    //     newTask.classList.toggle('completed');
+    // });
+    // newTask.querySelector('.delete-btn').addEventListener('click', () => {
+    //     newTask.remove();
+    // });
+}
+
+// Example usage:
+// addTask('Build my portfolio blog');
+                </code></pre>
+
+                <h3>Key Takeaways</h3>
+                <p>This project solidified my understanding that web development is an iterative process. It's not about getting it perfect the first time, but about building, testing, learning from mistakes, and continuously refining. The most important lesson was the power of breaking down a large problem into smaller, manageable chunks.</p>
+                <p>I hope this glimpse into my initial journey inspires others who are just starting out. Keep coding, keep learning, and don't be afraid to make mistakes!</p>
+            </article>
+            <p style="text-align: center; margin-top: 40px;"><a href="#blog-section" class="button-small">&larr; Back to All Blog Posts</a></p>
+        </section>
+
+        <section id="blog-post-2" class="container" style="padding-top: 60px; padding-bottom: 60px; background: var(--section-bg-light); margin-top: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <article>
+                <h2>Understanding User Experience in Design</h2>
+                <p class="post-meta">Published on: June 20, 2025 | Category: UX Design | Author: Cyuzuzo Joseph</p>
+
+                <img src="images/ux-design-post.jpg" alt="UX Designer prototyping on a whiteboard." style="max-width: 100%; height: auto; display: block; margin: 30px auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+
+                <p>User Experience (UX) design is about creating products that provide meaningful and relevant experiences to users. It involves the design of the entire process of acquiring and integrating the product, including aspects of branding, design, usability, and function.</p>
+
+                <h3>The Core Principles of Good UX</h3>
+                <p>Effective UX hinges on several key principles:</p>
+                <ul>
+                    <li>**User-Centricity:** Always design with the user's needs, behaviors, and motivations at the forefront.</li>
+                    <li>**Usability:** The product should be easy to learn, efficient to use, and minimize errors.</li>
+                    <li>**Accessibility:** Ensure the product is usable by people with disabilities, following guidelines like WCAG.</li>
+                    <li>**Consistency:** Maintain consistent design elements, interactions, and terminology throughout the product.</li>
+                    <li>**Feedback:** Provide clear and timely feedback to users about their actions and system status.</li>
+                </ul>
+
+                <p>For instance, when designing a simple login form, considering the user's journey means more than just having fields for username and password. It includes clear error messages, password visibility toggles, and secure handling of credentials.</p>
+
+                <h3>My Approach to UX Design</h3>
+                <p>My UX process typically involves:</p>
+                <ol>
+                    <li>**User Research:** Conducting interviews, surveys, and analyzing user data to understand target users.</li>
+                    <li>**Persona Creation:** Developing detailed profiles of hypothetical users to empathize with their needs.</li>
+                    <li>**Information Architecture:** Structuring content logically for easy navigation.</li>
+                    <li>**Wireframing & Prototyping:** Creating low-fidelity and high-fidelity mockups to visualize the user flow.</li>
+                    <li>**Usability Testing:** Gathering feedback from real users to identify pain points and areas for improvement.</li>
+                </ol>
+                <p>By iterating through these steps, I aim to create interfaces that are not only aesthetically pleasing but also delightful and effortless to use.</p>
+            </article>
+            <p style="text-align: center; margin-top: 40px;"><a href="#blog-section" class="button-small">&larr; Back to All Blog Posts</a></p>
+        </section>
+
+        <section id="blog-post-3" class="container" style="padding-top: 60px; padding-bottom: 60px; background: var(--section-bg-light); margin-top: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <article>
+                <h2>5 Essential Principles for Clean Code</h2>
+                <p class="post-meta">Published on: May 15, 2025 | Category: Software Engineering | Author: Cyuzuzo Joseph</p>
+
+                <img src="images/clean-code-post.jpg" alt="Organized code snippets on a screen." style="max-width: 100%; height: auto; display: block; margin: 30px auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+
+                <p>Writing code that works is one thing; writing **clean code** is another. Clean code is readable, maintainable, and understandable by others (and your future self). Here are five essential principles I follow to achieve it:</p>
+
+                <h3>1. Meaningful Names</h3>
+                <p>Variables, functions, classes – everything should have a name that clearly conveys its purpose. Avoid single-letter names (unless it's a loop counter like `i` or `j`) and generic terms like `data` or `temp`.</p>
+                <pre style="background: #eee; padding: 20px; border-radius: 8px; overflow-x: auto; margin-bottom: 1.5em; font-size: 0.95em; line-height: 1.5; border: 1px solid var(--border-color);"><code>
+// Bad
+const d = new Date();
+function calc(a, b) { ... }
+
+// Good
+const currentDate = new Date();
+function calculateTotalPrice(quantity, itemPrice) { ... }
+                </code></pre>
+
+                <h3>2. Functions Should Do One Thing (Single Responsibility Principle)</h3>
+                <p>Each function or method should have a single, well-defined purpose. If a function does more than one thing, it's harder to test, debug, and reuse. Break down complex tasks into smaller, specialized functions.</p>
+
+                <h3>3. Avoid Deep Nesting</h3>
+                <p>Too many nested `if` statements, `for` loops, or callbacks make code difficult to read and follow. Look for ways to flatten your code, perhaps by returning early or extracting nested logic into separate functions.</p>
+
+                <h3>4. Comments When Necessary, Not Always</h3>
+                <p>Self-documenting code is ideal – meaning the code itself is clear enough to understand. Comments should explain *why* something is done, not *what* is done (the code does that). Remove redundant or outdated comments.</p>
+
+                <h3>5. Consistency is Key</h3>
+                <p>Maintain consistent naming conventions, formatting styles, and architectural patterns throughout your codebase. This helps team members quickly understand new parts of the system. Tools like linters and formatters (e.g., Prettier, ESLint) can enforce this automatically.</p>
+
+                <p>Adhering to these principles transforms code from a fragile, confusing mess into a robust, understandable asset, improving collaboration and long-term project health.</p>
+            </article>
+            <p style="text-align: center; margin-top: 40px;"><a href="#blog-section" class="button-small">&larr; Back to All Blog Posts</a></p>
+        </section>
+        <section id="about-me" class="container">
+            <h2>About Cyuzuzo Joseph</h2>
+            <img src="images/profile-large.jpg" alt="Cyuzuzo Joseph" class="profile-pic-large">
+            <p>Hello! I'm Cyuzuzo Joseph, a **Software Developer** based in **Kigali, Rwanda**. My journey into **software engineering** began with a fascination for **how interactive websites are built and simplifying complex ideas through well-crafted code**. I am passionate about **building innovative and scalable web solutions**, always striving to create products that are not only functional but also intuitive and impactful.</p>
+            <p>I enjoy **solving complex coding challenges, exploring new design patterns, delving into technical documentation, and contributing to open-source projects**. I am continuously expanding my skillset to stay at the forefront of technology.</p>
+
+            <h3>My Skills:</h3>
+            <ul>
+                <li>HTML & CSS (Sass, Bootstrap)</li>
+                <li>JavaScript (React, Vue.js, Node.js, Express)</li>
+                <li>Backend Development (Python, Django, Flask)</li>
+                <li>Databases (MongoDB, PostgreSQL, MySQL)</li>
+                <li>Cloud Platforms (AWS, Azure)</li>
+                <li>UI/UX Design (Figma, Adobe XD)</li>
+                <li>Version Control (Git, GitHub)</li>
+                <li>Technical Writing & Blogging</li>
+            </ul>
+            <h3>My Mission:</h3>
+            <p>I aim to **build innovative and scalable software solutions that improve user experiences and drive business value**. I believe in lifelong learning and am always eager to collaborate on exciting projects that challenge me and allow me to make a meaningful contribution to the tech community.</p>
+            <p>I'm always open to new opportunities and discussions about technology, design, or anything that sparks curiosity. Feel free to connect!</p>
+            <a href="your-resume.pdf" class="button" download>Download My Resume</a>
+        </section>
+
+        <section id="contact-me" class="container">
+            <h2>Get in Touch</h2>
+            <p>Have a question, a project idea, or just want to say hello? I'm based in Kigali, Rwanda, and always eager to connect with fellow professionals and potential collaborators. Feel free to reach out using the form below, or connect with me on social media!</p>
+
+            <form action="https://formspree.io/f/yourformid" method="POST">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="_replyto" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="8" required></textarea>
+                </div>
+                <button type="submit" class="button">Send Message</button>
+            </form>
+
+            <p class="contact-info">You can also find me on:</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/cyuzuzojoseph" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn" width="30" height="30"> LinkedIn</a>
+                <a href="https://github.com/cyuzuzojoseph" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub" width="30" height="30"> GitHub</a>
+                <a href="mailto:jcyuzuzo2@gmail.com"><img src="https://img.icons8.com/ios-filled/50/000000/email.png" alt="Email" width="30" height="30"> Email Me</a>
+                <a href="https://twitter.com/cyuzuzojoseph" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/twitterx.png" alt="Twitter" width="30" height="30"> Twitter</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Cyuzuzo Joseph. All rights reserved. | Based in Kigali, Rwanda.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/cyuzuzojoseph" target="_blank">LinkedIn</a>
+                <a href="https://github.com/cyuzuzojoseph" target="_blank">GitHub</a>
+                <a href="https://twitter.com/cyuzuzojoseph" target="_blank">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* --- Internal JavaScript for the Entire Page --- */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for internal navigation links
+            document.querySelectorAll('header nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevent default anchor click behavior
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth' // Smooth scroll effect
+                        });
+                        // Optional: Update URL hash without jumping
+                        history.pushState(null, '', targetId);
+                    }
+                });
+            });
+
+            console.log("Cyuzuzo Joseph's all-in-one portfolio and blog loaded!");
+        });
+    </script>
+</body>
+</html>
